@@ -9,26 +9,40 @@ function expandLessImportsVirtual(): Plugin {
     return {
         name: 'expand-less-imports-virtual',
         enforce: 'pre',
+
         load(id: string) {
-            if (id.endsWith('src/css/styles.less')) {
-                const filePath = path.resolve(id)
-                let content = fs.readFileSync(filePath, 'utf8')
+            // Обрабатываем только .less файлы (без node_modules)
+            if (!id.endsWith('.less') || id.includes('node_modules')) {
+                return
+            }
 
-                const pattern = /@import\s+"([^"]*\*\*[^"]*)";/g
-                let match: RegExpExecArray | null
-                while ((match = pattern.exec(content)) !== null) {
-                    const globPattern = path.resolve(path.dirname(filePath), match[1])
-                    const files = glob.sync(globPattern.replace(/\\/g, '/'))
+            const filePath = path.resolve(id)
+            let content = fs.readFileSync(filePath, 'utf8')
 
-                    const imports = files
-                        .map((f: string) => `@import "${path.relative(path.dirname(filePath), f).replace(/\\/g, '/')}";`)
-                        .join('\n')
+            // Находим все импорты с glob-паттернами (* или **)
+            const pattern = /@import\s+"([^"]*\*[^"]*)";/g
+            let match: RegExpExecArray | null
 
-                    content = content.replace(match[0], imports)
+            while ((match = pattern.exec(content)) !== null) {
+                const globPattern = path.resolve(path.dirname(filePath), match[1])
+
+                // Находим подходящие файлы
+                const files = glob.sync(globPattern.replace(/\\/g, '/'))
+
+                if (!files.length) {
+                    continue // нет совпадений — пропускаем
                 }
 
-                return content
+                // Генерируем обычные импорты
+                const imports = files
+                    .map((f: string) => `@import "${path.relative(path.dirname(filePath), f).replace(/\\/g, '/')}";`)
+                    .join('\n')
+
+                // Подменяем в тексте
+                content = content.replace(match[0], imports)
             }
+
+            return content
         }
     }
 }
