@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "fast-glob": "^3.3.3",
     "pinia": "^3.0.3",
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "vue-awesome-paginate": "^1.2.0"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
