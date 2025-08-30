@@ -26,9 +26,9 @@
 	</div>
 </template>
 <script setup lang="ts">
-	import PokemonCard from "./PokemonCard.vue";
-	import {usePokemonStore} from "../../../stores/pokemonStore.ts";
+	import {usePokemonStore} from "@/stores/pokemonStore.ts";
 	import {computed, onMounted, ref} from "vue";
+	import PokemonCard from "@/js/components/pokemon/PokemonCard.vue";
 
 	const loadingText = "Loading...";
 	const store = usePokemonStore();

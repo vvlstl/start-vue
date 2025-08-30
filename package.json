@@ -13,7 +13,8 @@
     "fast-glob": "^3.3.3",
     "pinia": "^3.0.3",
     "vue": "^3.5.17",
-    "vue-awesome-paginate": "^1.2.0"
+    "vue-awesome-paginate": "^1.2.0",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

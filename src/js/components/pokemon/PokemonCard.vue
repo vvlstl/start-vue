@@ -1,5 +1,8 @@
 <template>
-	<div class="pokemon-card">
+	<RouterLink
+		:to="`pokemon/${pokemon.id}`"
+		class="pokemon-card"
+	>
 		<img
 			:src="pokemon.image"
 			:alt="pokemon.name"
@@ -10,7 +13,7 @@
 			v-html="pokemon.name"
 		/>
 		<p class="pokemon-card__id">#{{ pokemon.id }}</p>
-	</div>
+	</RouterLink>
 </template>
 
 <script setup lang="ts">
