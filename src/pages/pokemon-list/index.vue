@@ -4,15 +4,15 @@
 		<template v-if="store.loading">
 			<div
 				class="loading"
-				v-html="loadingText"
+				v-html="store.loadingText"
 			/>
 		</template>
 		<template v-else>
 			<div class="pokemon-list__items">
 				<PokemonCard
-					v-for="p in store.pokemons"
-					:key="p.id"
-					:pokemon="p"
+					v-for="(pokemon, index) in store.pokemons"
+					:key="index"
+					:pokemon="pokemon"
 				/>
 			</div>
 
@@ -20,7 +20,7 @@
 				class="pokemon-list__pagination"
 				:total-items="totalPages"
 				v-model="currentPage"
-				@click="store.fetchPokemons(currentPage)"
+				@click="store.getPokemons(currentPage)"
 			/>
 		</template>
 	</div>
@@ -30,11 +30,10 @@
 	import {computed, onMounted, ref} from "vue";
 	import PokemonCard from "@/js/components/pokemon/PokemonCard.vue";
 
-	const loadingText = "Loading...";
 	const store = usePokemonStore();
 	const totalPages = computed(() => Math.ceil(store.total / store.limit));
 	const currentPage = ref<number>(1);
 
-	onMounted(() => store.fetchPokemons(currentPage.value))
+	onMounted(() => store.getPokemons(currentPage.value))
 </script>
 

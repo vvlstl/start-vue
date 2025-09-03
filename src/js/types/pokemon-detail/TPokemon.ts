@@ -5,9 +5,12 @@ export type TPokemon = {
     height: number
     weight: number
     sprites: {
-        front_default: string | null
+        front_default?: string
         other?: {
-            'official-artwork'?: { front_default: string | null }
+            'official-artwork'?:
+                {
+                    front_default?: string
+                }
         }
     }
     types: {
