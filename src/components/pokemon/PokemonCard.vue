@@ -1,6 +1,11 @@
 <template>
 	<RouterLink
-		:to="`pokemon/${pokemon.id}`"
+		:to="{
+			name: 'pokemon.detail',
+			params: {
+				id: pokemon.id
+			}
+		}"
 		class="pokemon-card"
 	>
 		<img
@@ -21,9 +26,9 @@
 		pokemon: {
 			id: number,
 			name: string,
-			image: string
+			image: string,
 		}
 	}
-	const props = defineProps<TComponentProps>()
+	const props = defineProps<TComponentProps>();
 	void props
 </script>

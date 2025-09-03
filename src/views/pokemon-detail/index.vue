@@ -49,14 +49,16 @@
 </template>
 
 <script setup lang="ts">
-	import {onMounted} from "vue"
-	import {useRoute} from "vue-router"
+	import {onMounted} from "vue";
+	import {useRoute} from "vue-router";
 	import {usePokemonStore} from "@/stores/pokemon.ts";
 
-	const route = useRoute()
-	const store = usePokemonStore()
+	const route = useRoute();
+	const store = usePokemonStore();
 
 	onMounted(() => {
-		store.getPokemon(Number(route.params.id))
-	})
+		store.getPokemon(Number(route.params.id));
+	});
 </script>
+
+

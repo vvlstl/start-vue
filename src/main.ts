@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import App from '@/js/components/App.vue';
-import router from "@/router/router.ts";
+import App from '@/components/App.vue';
+import router from "@/router";
 import {VueAwesomePaginate} from "vue-awesome-paginate";
 import '@/css/styles.less';
 

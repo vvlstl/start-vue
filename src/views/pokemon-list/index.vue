@@ -26,14 +26,15 @@
 	</div>
 </template>
 <script setup lang="ts">
-	import {usePokemonStore} from "@/stores/pokemon.ts";
 	import {computed, onMounted, ref} from "vue";
 	import PokemonCard from "@/components/pokemon/PokemonCard.vue";
+	import {usePokemonStore} from "@/stores/pokemon.ts";
 
 	const store = usePokemonStore();
 	const totalPages = computed(() => Math.ceil(store.total / store.limit));
 	const currentPage = ref<number>(1);
 
-	onMounted(() => store.getPokemons(currentPage.value))
+	onMounted(() => store.getPokemons(currentPage.value));
 </script>
+
 
