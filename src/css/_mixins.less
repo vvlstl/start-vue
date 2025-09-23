@@ -1,0 +1,12 @@
+@import "_var";
+
+.transit(@prop: all, @time: @transitionTime, @ease: @transitEase) {
+  transition-property: e(@prop);
+  transition-duration: @time;
+  transition-timing-function: @ease;
+}
+
+.size(@width, @height: @width) {
+  width: @width;
+  height: @height;
+}

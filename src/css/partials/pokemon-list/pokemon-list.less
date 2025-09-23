@@ -1,0 +1,19 @@
+@import "../../_var";
+
+.pokemon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+
+  &__title {
+    font: 700 24px/1.4 @font;
+    color: @cWhite;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+    gap: 16px;
+  }
+}
