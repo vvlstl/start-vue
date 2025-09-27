@@ -1,0 +1,51 @@
+@import "../../_var";
+
+.btn {
+  --btn-bg-color: @cGreyDark;
+  --btn-border-color: @cGreyDark;
+  --btn-color: @cWhite;
+
+  --btn-hover-bg-color: @cGreyDark;
+  --btn-hover-border-color: @cBlue;
+  --btn-hover-color: @cWhite;
+
+  --btn-border-width: 1px;
+  --btn-border-radius: 8px;
+  --btn-height: 40px;
+  --btn-padding: 0 12px;
+  --btn-fw: 700;
+  --btn-fs: 16px;
+
+  .clear-btn();
+  .transit(~'opacity, color, border-color, background-color');
+  position: relative;
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: var(--btn-bg-color);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  border-radius: var(--btn-border-radius);
+  color: var(--btn-color);
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  white-space: nowrap;
+  text-align: center;
+  user-select: none;
+  flex-shrink: 0;
+  font: var(--btn-fw) var(--btn-fs) / 1 @font;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    color: var(--btn-hover-color);
+    border-color: var(--btn-hover-border-color);
+    background-color: var(--btn-hover-bg-color);
+  }
+
+  &--square {
+    .size(var(--btn-height));
+    padding: 0;
+  }
+}

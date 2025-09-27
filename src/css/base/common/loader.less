@@ -1,0 +1,27 @@
+@import "../../_var";
+
+.loader {
+  display: inline-grid;
+  font: 400 18px/1.4 @font;
+  color: @cWhite;
+
+  &:before, &:after {
+    content:"Loading...";
+    grid-area: 1/1;
+    mask-size: 100% 5px,100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: l35-1 1s infinite;
+  }
+
+  &:before {
+    mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  }
+  &:after {
+    mask-image: linear-gradient(#000 0 0);
+    animation:
+      l35-1  1s infinite,
+      l35-2 .2s infinite cubic-bezier(0.5,200,0.5,-200);
+  }
+}
