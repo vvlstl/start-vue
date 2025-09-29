@@ -1,0 +1,65 @@
+@import "../../_var";
+
+.input,
+.textarea {
+  --input-height: 40px;
+
+  --input-padding-top: 18px;
+  --input-padding-bottom: var(--input-padding-top);
+  --input-padding-left: 16px;
+  --input-padding-right: var(--input-padding-left);
+
+  --focus-offset: 0;
+  --input-color: @cWhite;
+  --input-fw: 500;
+  --input-fs: 14px;
+  --input-lh: 1.4;
+  --input-font-family: @font;
+  --input-border-width: 1px;
+  --input-border-color: transparent;
+  --input-border-radius: 16px;
+  --input-background-color: fade(@cWhite, 4);
+
+  --input-hover-color: @cWhite;
+  --input-hover-background-color: fade(@cWhite, 8);
+  --input-hover-border-color: fade(@cWhite, 8);
+
+  --input-focus-color: @cWhite;
+  --input-focus-background-color: fade(@cWhite, 8);
+  --input-focus-border-color: fade(@cWhite, 40);
+
+  --input-placeholder-color: fade(@cWhite, 40);
+
+  .clear-input();
+  .size(100%, var(--input-height));
+  .transit();
+  display: block;
+  padding: calc(var(--input-padding-top) * (1 + var(--focus-offset))) var(--input-padding-right) calc(var(--input-padding-bottom) * (1 + var(--focus-offset))) var(--input-padding-left);
+  color: var(--input-color);
+  font: var(--input-fw) var(--input-fs) / var(--input-lh) var(--input-font-family);
+  border: var(--input-border-width) solid var(--input-border-color);
+  border-radius: var(--input-border-radius);
+  box-sizing: border-box;
+  background-color: var(--input-background-color);
+
+  &:hover {
+    color: var(--input-hover-color);
+    background-color: var(--input-hover-background-color);
+    border-color: var(--input-hover-border-color);
+  }
+
+  &:focus {
+    color: var(--input-focus-color);
+    background-color: var(--input-focus-background-color);
+    border-color: var(--input-focus-border-color);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: .4;
+  }
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+}
