@@ -43,6 +43,9 @@ export const usePokemonStore = defineStore('pokemon', {
     async loadPokemon(id: number) {
       this.loading = true;
       try {
+        //Искуственная задержка
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
         this.pokemon = <TPokemonItem>{
           id: res.data.id,
