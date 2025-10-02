@@ -12,9 +12,16 @@
   box-shadow: 0 2px 6px fade(@cBlack, 0.1);
   user-select: none;
   cursor: pointer;
+  text-decoration: inherit;
 
   &:hover {
     transform: scale(1.05);
+
+    .pokemon-card {
+        &__name {
+          color: @cBlue;
+        }
+    }
   }
 
   &__picture {
@@ -30,6 +37,7 @@
   }
 
   &__name {
+    .transit(color, @time: 0.4s);
     font: 700 18px/1.5 @font;
     color: @cGrey;
     text-transform: capitalize;

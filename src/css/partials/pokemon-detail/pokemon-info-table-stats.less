@@ -1,0 +1,27 @@
+@import "../../_var";
+
+.pokemon-info-table-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid fade(@cWhite, 40);
+
+  &__item {
+    &:not(:last-child) {
+      border-right: 1px solid fade(@cWhite, 40);
+    }
+  }
+
+  &__title {
+    font: 600 16px/1 @font;
+    padding: 10px;
+    color: fade(@cWhite, 90);
+    border-bottom: 1px solid fade(@cWhite, 40);
+    text-transform: capitalize;
+  }
+
+  &__value {
+    padding: 10px;
+    color: fade(@cWhite, 60);
+  }
+
+}

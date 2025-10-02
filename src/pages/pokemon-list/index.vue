@@ -42,21 +42,35 @@
   </div>
 </template>
 <script setup lang="ts">
-  import PokemonCard from "@/components/pokemon-list/PokemonCard.vue";
-  import {onMounted} from "vue";
+  import {onMounted, watch} from "vue";
   import {usePokemonStore} from "@/stores/pokemon.ts";
   import Loader from "@/components/common/Loader.vue";
   import Pagination from "@/components/common/Pagination.vue";
   import SearchForm from "@/components/form/SearchForm.vue";
+  import PokemonCard from "@/components/pokemon/PokemonCard.vue";
+  import {useRoute, useRouter} from "vue-router";
 
   const store = usePokemonStore();
+  const route = useRoute();
+  const router = useRouter();
 
   async function handlePageChange(page: number) {
     store.setCurrentPage(page);
-    await store.loadPokemons()
+    await router.push({params: {page: page === 1 ? '' : page}});
+    await store.loadPokemons(page)
   }
 
-  onMounted(() => {
-    store.loadPokemons();
+  onMounted(async () => {
+    const pageFromUrl = route.params.page ? Number(route.params.page) : 1;
+    store.setCurrentPage(pageFromUrl);
+    await store.loadPokemons(pageFromUrl);
   });
+
+  watch(() => route.params.page, async (newValuePage) => {
+    const page = newValuePage ? Number(newValuePage) : 1;
+    if (page !== store.currentPage) {
+      store.setCurrentPage(page);
+      await store.loadPokemons(page);
+    }
+  })
 </script>

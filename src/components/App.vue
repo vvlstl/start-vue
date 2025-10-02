@@ -1,9 +1,7 @@
 <template>
   <div class="container">
-    <PokemonList/>
+    <RouterView/>
   </div>
 </template>
 
-<script setup lang="ts">
-  import PokemonList from "@/components/pokemon-list/PokemonList.vue";
-</script>
+<script setup lang="ts"></script>

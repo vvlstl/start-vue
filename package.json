@@ -19,7 +19,8 @@
     "less": "^4.4.1",
     "pinia": "^3.0.3",
     "vue": "^3.5.18",
-    "vue-awesome-paginate": "^1.2.0"
+    "vue-awesome-paginate": "^1.2.0",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",

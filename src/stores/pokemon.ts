@@ -5,6 +5,7 @@ import axios from "axios";
 export const usePokemonStore = defineStore('pokemon', {
   state: () => ({
     pokemons: [] as TPokemonItem[],
+    pokemon: null as TPokemonItem | null,
     allPokemons: [] as TPokemonItem[],
     loading: false,
 
@@ -32,16 +33,36 @@ export const usePokemonStore = defineStore('pokemon', {
       return state.query ? state.searchResults.length : state.totalElements;
     },
 
-    getTotalPages(state){
+    getTotalPages(state) {
       const total = state.query ? state.searchResults.length : state.totalElements;
       return Math.ceil(total / state.limit);
     }
   },
 
   actions: {
-    async loadPokemons() {
+    async loadPokemon(id: number) {
       this.loading = true;
-      const offset = (this.currentPage - 1) * this.limit;
+      try {
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        this.pokemon = <TPokemonItem>{
+          id: res.data.id,
+          name: res.data.name,
+          picture: res.data.sprites.other['official-artwork'].front_default,
+          abilities: res.data.abilities.map((item: any) => item.ability.name),
+          height: res.data.height,
+          stats: res.data.stats,
+          weight: res.data.weight,
+          types: res.data.types.map((item: any) => item.type.name),
+        };
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async loadPokemons(page = 1) {
+      this.loading = true;
+      this.currentPage = page;
+      const offset = (page - 1) * this.limit;
       try {
         //Искуственная задержка
         await new Promise(resolve => setTimeout(resolve, 1000));
